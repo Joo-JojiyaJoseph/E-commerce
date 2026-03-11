@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Type;
@@ -89,6 +91,26 @@ class DatabaseSeeder extends Seeder
                         'name' => $subName
                     ]);
                 }
+            }
+        }
+          $attributes = [
+            'Color' => ['Red', 'Blue', 'Green', 'Black', 'White'],
+            'Size' => ['Small', 'Medium', 'Large', 'X-Large'],
+            'Material' => ['Cotton', 'Leather', 'Polyester', 'Wool'],
+            'Warranty' => ['6 Months', '1 Year', '2 Years', '3 Years'],
+            'Brand' => ['Brand A', 'Brand B', 'Brand C', 'Brand D'],
+        ];
+
+        foreach ($attributes as $attrName => $values) {
+            $attribute = Attribute::create([
+                'name' => $attrName,
+            ]);
+
+            foreach ($values as $val) {
+                AttributeValue::create([
+                    'attribute_id' => $attribute->id,
+                    'value' => $val,
+                ]);
             }
         }
     }

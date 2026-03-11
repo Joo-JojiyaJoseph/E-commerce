@@ -13,25 +13,19 @@ import {
 export default function Sidebar() {
 
     const menu = [
-        { name: "Dashboard", icon: LayoutDashboard, url: "/admin/dashboard" },
-
+        
+        // { name: "Dashboard", icon: LayoutDashboard, url: "/admin/dashboard" },
         { name: "Types", icon: Boxes, url: "/admin/types" },
-
         { name: "Categories", icon: Layers, url: "/admin/categories" },
-
         { name: "Sub Categories", icon: ListTree, url: "/admin/subcategories" },
-
+        { name: "Attributes", icon: SlidersHorizontal, url: "/admin/attributes" },
         { name: "Products", icon: Package, url: "/admin/products" },
 
-        { name: "Attributes", icon: SlidersHorizontal, url: "/admin/attributes" },
 
-        { name: "Attribute Values", icon: Database, url: "/admin/attribute-values" },
-
-        { name: "Specifications", icon: Tag, url: "/admin/specifications" },
-
-        { name: "Variants", icon: Boxes, url: "/admin/variants" },
-
-        { name: "Orders", icon: ShoppingCart, url: "/admin/orders" },
+        // { name: "Attribute Values", icon: Database, url: "/admin/attribute-values" },
+        // { name: "Specifications", icon: Tag, url: "/admin/specifications" },
+        // { name: "Variants", icon: Boxes, url: "/admin/variants" },
+        // { name: "Orders", icon: ShoppingCart, url: "/admin/orders" },
     ];
 
     return (

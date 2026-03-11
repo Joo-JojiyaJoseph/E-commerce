@@ -91,8 +91,8 @@ Route::middleware(['auth', 'admin'])
         Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
 
         // Attribute Routes
-        Route::get('/attribute', [AttributeController::class, 'index'])->name('admin.attributes.index');
-        Route::post('/attributes', [AttributeController::class, 'store'])->name('admin.attributes.store');
+        Route::get('/attribute', [AttributeController::class, 'index'])->name('attributes.index');
+        Route::post('/attributes', [AttributeController::class, 'store'])->name('attributes.store');
         Route::put('/attributes/{id}', [AttributeController::class, 'update'])->name('admin.attributes.update');
         Route::delete('/attributes/{id}', [AttributeController::class, 'destroy'])->name('admin.attributes.destroy');
 

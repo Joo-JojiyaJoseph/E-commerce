@@ -34,7 +34,7 @@ export default function AdminLayout({ children }) {
 
                 <Header toggleSidebar={() => setOpen(!open)} />
 
-                <main className="p-6 overflow-y-auto">
+                <main className="p-6 overflow-y-auto px-20">
                     {children}
                 </main>
 

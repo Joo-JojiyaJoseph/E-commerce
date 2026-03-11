@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attribute;
+use App\Models\AttributeValue;
 use Illuminate\Http\Request;
 
 class AttributeController extends Controller
@@ -14,8 +15,13 @@ class AttributeController extends Controller
             ->latest()
             ->paginate(10);
 
+              $values = AttributeValue::with('attribute')
+            ->latest()
+            ->paginate(10);
+
         return inertia('Admin/Attributes/Index', [
-            'attributes' => $attributes
+            'attributes' => $attributes,
+             'values' => $values,
         ]);
     }
 
