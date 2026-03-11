@@ -83,7 +83,7 @@ export default function CategoryIndex({ types }) {
             </div>
 
             {/* Type Header */}
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center my-2">
               <h3 className="font-semibold text-lg text-slate-800">{type.name}</h3>
               <button
                 onClick={() => openAddCategory(type.id)}

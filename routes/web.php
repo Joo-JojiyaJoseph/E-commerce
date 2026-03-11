@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Subcategory;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,9 +30,9 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +74,14 @@ Route::middleware(['auth', 'admin'])
         Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
         Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+        // Subcategory Routes
+        Route::get('/subcategories', [SubcategoryController::class,'index'])->name('admin.subcategory.index');
+        Route::post('/subcategories', [SubcategoryController::class, 'store'])->name('admin.subcategory.store');
+        Route::put('/subcategories/{id}', [SubcategoryController::class, 'update'])->name('admin.subcategory.update');
+        Route::delete('/subcategories/{id}', [SubcategoryController::class, 'destroy'])->name('admin.subcategory.destroy');
+
+
     });
 
 /*

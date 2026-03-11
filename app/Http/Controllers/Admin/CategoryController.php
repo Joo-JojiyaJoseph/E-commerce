@@ -59,6 +59,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if ($category->subcategories()->count() > 0) {
+            return back()->with('error', 'Cannot delete category because it has subcategories.');
+        }
+
         $category->delete();
 
         return back()->with('success', 'Category deleted successfully!');

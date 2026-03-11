@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-           // Admin User
+        // Admin User
         User::create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
@@ -35,29 +36,60 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $types = [
-    ['name' => 'Electronics', 'image' => 'electronics.jpg'],
-    ['name' => 'Clothing', 'image' => 'clothing.jpg'],
-    ['name' => 'Furniture', 'image' => 'furniture.jpg'],
-    ['name' => 'Books', 'image' => 'books.jpg'],
-];
+            ['name' => 'Electronics', 'image' => 'electronics.jpg'],
+            ['name' => 'Clothing', 'image' => 'clothing.jpg'],
+            ['name' => 'Furniture', 'image' => 'furniture.jpg'],
+            ['name' => 'Books', 'image' => 'books.jpg'],
+        ];
 
-foreach ($types as $typeData) {
-    $type = Type::create($typeData);
+        foreach ($types as $typeData) {
 
-    $categories = match($type->name) {
-        'Electronics' => ['Smartphones', 'Laptops', 'Accessories'],
-        'Clothing' => ['T-Shirts', 'Jeans', 'Jackets'],
-        'Furniture' => ['Tables', 'Chairs', 'Beds'],
-        'Books' => ['Programming', 'Novels', 'Comics'],
-        default => []
-    };
+            $type = Type::create($typeData);
 
-    foreach ($categories as $catName) {
-        Category::create([
-            'type_id' => $type->id,
-            'name' => $catName
-        ]);
-    }
-}
+            $categories = match ($type->name) {
+
+                'Electronics' => [
+                    'Smartphones' => ['Android Phones', 'iPhones', 'Gaming Phones'],
+                    'Laptops' => ['Gaming Laptops', 'Ultrabooks', 'Business Laptops'],
+                    'Accessories' => ['Chargers', 'Headphones', 'Power Banks'],
+                ],
+
+                'Clothing' => [
+                    'T-Shirts' => ['Round Neck', 'V Neck', 'Graphic Tees'],
+                    'Jeans' => ['Slim Fit', 'Regular Fit', 'Skinny Jeans'],
+                    'Jackets' => ['Leather Jackets', 'Winter Jackets', 'Denim Jackets'],
+                ],
+
+                'Furniture' => [
+                    'Tables' => ['Dining Tables', 'Office Tables', 'Coffee Tables'],
+                    'Chairs' => ['Office Chairs', 'Dining Chairs', 'Gaming Chairs'],
+                    'Beds' => ['King Size Beds', 'Queen Size Beds', 'Bunk Beds'],
+                ],
+
+                'Books' => [
+                    'Programming' => ['PHP', 'Laravel', 'React'],
+                    'Novels' => ['Romance', 'Thriller', 'Drama'],
+                    'Comics' => ['Marvel', 'DC', 'Manga'],
+                ],
+
+                default => []
+            };
+
+            foreach ($categories as $categoryName => $subcategories) {
+
+                $category = Category::create([
+                    'type_id' => $type->id,
+                    'name' => $categoryName
+                ]);
+
+                foreach ($subcategories as $subName) {
+
+                    Subcategory::create([
+                        'category_id' => $category->id,
+                        'name' => $subName
+                    ]);
+                }
+            }
+        }
     }
 }
